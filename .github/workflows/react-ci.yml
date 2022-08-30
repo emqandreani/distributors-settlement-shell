@@ -1,0 +1,42 @@
+name: React CI
+
+on:
+  pull_request:
+    branches: [ main ] #can change to run on development or cicd branch
+  push:
+    branches: [ main ]
+env:
+  SKIP_TEST: 'false'
+  CI: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: architecture-it/actions@react-base
+      with:
+        matrix_version: ${{ matrix.node-version }}
+        skip_test: ${{ env.SKIP_TEST }}
+        packages_token: ${{ secrets.ARQUITECTURA_DEPLOY }}
+        # secret habilitado a nivel organización
+        fontawesome_token: ${{ secrets.NPM_FONTAWESOME_KEY }}
+  sonarqube:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: SonarQube Analyzer
+        uses: architecture-it/actions@sonarqube
+        with:
+          sonar_url: ${{ secrets.SONAR_HOST_URL }}
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
+          skip_test: ${{ env.SKIP_TEST }}
+          sonar_code: 'Js'

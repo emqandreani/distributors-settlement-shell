@@ -1,0 +1,17 @@
+.span {
+  color: var(--gray-500);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 0.5em;
+}

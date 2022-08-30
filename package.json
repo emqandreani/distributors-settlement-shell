@@ -1,0 +1,79 @@
+{
+  "name": "distributors-settlement-shell",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@architecture-it/cra-template-shell": "1.0.1",
+    "@architecture-it/stylesystem": "^2.5.0",
+    "@azure/msal-browser": "^2.28.1",
+    "@azure/msal-react": "^1.4.5",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.3",
+    "@reduxjs/toolkit": "^1.8.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-env -- react-scripts test",
+    "eject": "react-scripts eject",
+    "prestart": "react-env --",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "eslint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "stylelint": "stylelint **/*.{css,scss}",
+    "stylelint:fix": "stylelint --fix **/*.{css,scss}",
+    "lint": "npm run eslint && npm run stylelint",
+    "lint:fix": "npm run eslint:fix && npm run stylelint:fix",
+    "docker:build": "docker build -t andreani-front .",
+    "docker:start": "docker run -p 9000:3000 --env-file ./.env andreani-front"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@architecture-it/andreani/react-ts"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@architecture-it/eslint-config-andreani": "*",
+    "@architecture-it/react-env": "*",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/pro-light-svg-icons": "^6.2.0",
+    "@fortawesome/pro-regular-svg-icons": "^6.2.0",
+    "@fortawesome/pro-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
+    "@types/jest": "^28.1.4",
+    "@types/node": "^18.0.0",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "react-app-rewired": "*",
+    "react-scripts": "*",
+    "sass": "*",
+    "stylelint": "*",
+    "stylelint-config-standard": "*",
+    "stylelint-config-standard-scss": "*",
+    "typescript": "^4.7.4"
+  }
+}

@@ -1,0 +1,1 @@
+if(window.__ENV){ Object.assign(window.__ENV, {"REACT_APP_B2C_authorityDomain":"url","REACT_APP_B2C_clientId":"clientId","REACT_APP_MFE_REMOTE":"remote@http://localhost:3001/remoteEntry.js"}); } else { window.__ENV = {"REACT_APP_B2C_authorityDomain":"url","REACT_APP_B2C_clientId":"clientId","REACT_APP_MFE_REMOTE":"remote@http://localhost:3001/remoteEntry.js"}; }
