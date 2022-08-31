@@ -1,4 +1,4 @@
-import { useMsal } from "@azure/msal-react";
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import React from "react";
 import { Route, Routes } from "react-router";
 import type { IRemoteAppProps } from "remote/App";
@@ -14,6 +14,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 export default function AppRoutes() {
   const { accounts } = useMsal();
+  const isAuth = useIsAuthenticated();
   const account = accounts?.[0];
 
   return (
@@ -25,10 +26,7 @@ export default function AppRoutes() {
         <Route element={<ProtectedRoute />} path="module/*">
           <Route element={<RemoteApp account={account} />} path="*" />
         </Route>
-        <Route element={<ProtectedRoute />}>
-          <Route index element={<Home />} />
-        </Route>
-        <Route element={<p>Login</p>} path="login" />
+        <Route index element={isAuth ? <Home /> : <h1>Inicia sesión para continuar</h1>} />
       </Routes>
     </React.Suspense>
   );

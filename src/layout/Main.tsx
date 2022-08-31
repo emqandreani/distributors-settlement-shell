@@ -52,19 +52,19 @@ const generateRoutesAuthenticated = ({
     selected: pathname === "/user",
   },
   {
-    item: "Logout con Popup",
+    item: "Logout",
     onClick: () => {
       instanceMsal.logoutPopup({ postLogoutRedirectUri: "/", mainWindowRedirectUri: "/" });
       handleClose();
     },
   },
-  {
-    item: "Logout con Redirect",
-    onClick: () => {
-      instanceMsal.logoutRedirect({ postLogoutRedirectUri: "/" });
-      handleClose();
-    },
-  },
+  // {
+  //   item: "Logout con Redirect",
+  //   onClick: () => {
+  //     instanceMsal.logoutRedirect({ postLogoutRedirectUri: "/" });
+  //     handleClose();
+  //   },
+  // },
 ];
 
 const generateRoutesUnauthenticated = ({
@@ -74,7 +74,7 @@ const generateRoutesUnauthenticated = ({
   {
     item: (
       <Button
-        text="Login con Popup"
+        text="Login"
         variant="outlined"
         onClick={() => {
           instanceMsal.loginPopup(loginRequest);
@@ -83,18 +83,18 @@ const generateRoutesUnauthenticated = ({
       />
     ),
   },
-  {
-    item: (
-      <Button
-        text="Login con Redirect"
-        variant="outlined"
-        onClick={() => {
-          instanceMsal.loginRedirect(loginRequest);
-          handleClose();
-        }}
-      />
-    ),
-  },
+  // {
+  //   item: (
+  //     <Button
+  //       text="Login con Redirect"
+  //       variant="outlined"
+  //       onClick={() => {
+  //         instanceMsal.loginRedirect(loginRequest);
+  //         handleClose();
+  //       }}
+  //     />
+  //   ),
+  // },
 ];
 
 interface IMainProps {
