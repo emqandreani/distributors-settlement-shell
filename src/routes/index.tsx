@@ -25,7 +25,10 @@ export default function AppRoutes() {
         <Route element={<ProtectedRoute />} path="module/*">
           <Route element={<RemoteApp account={account} />} path="*" />
         </Route>
-        <Route index element={<Home />} />
+        <Route element={<ProtectedRoute />}>
+          <Route index element={<Home />} />
+        </Route>
+        <Route element={<p>Login</p>} path="login" />
       </Routes>
     </React.Suspense>
   );
