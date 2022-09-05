@@ -56,7 +56,5 @@ export default async function dynamicImport<T>(path: string) {
   const factory = await container.get(component);
   const Module = factory<T>();
 
-  console.log(Module);
-
   return Module;
 }
