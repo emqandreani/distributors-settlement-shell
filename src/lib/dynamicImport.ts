@@ -4,6 +4,8 @@
  * @returns
  *
  * @example
+ *
+ * remote@http
  * const AppRemote = React.lazy(() => dynamicImport<IAppRemoteProps>("remote/App"));
  */
 
@@ -53,6 +55,8 @@ export default async function dynamicImport<T>(path: string) {
 
   const factory = await container.get(component);
   const Module = factory<T>();
+
+  console.log(Module);
 
   return Module;
 }
