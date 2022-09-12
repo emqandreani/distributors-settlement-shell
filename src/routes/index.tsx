@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import type { IRemoteAppProps } from "remote/App";
 import dynamicImport from "lib/dynamicImport";
+import { store } from "app/store";
 
 import PrincipalSkeleton from "../skeletons/Principal";
 
@@ -24,7 +25,7 @@ export default function AppRoutes() {
           <Route element={<User />} path="user" />
         </Route>
         <Route element={<ProtectedRoute />} path="administracion/*">
-          <Route element={<RemoteApp account={account} />} path="*" />
+          <Route element={<RemoteApp account={account} store={store} />} path="*" />
         </Route>
         <Route index element={isAuth ? <Home /> : <h1>Inicia sesión para continuar</h1>} />
       </Routes>

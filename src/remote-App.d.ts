@@ -3,6 +3,7 @@ declare module "remote/App" {
 
   export interface IRemoteAppProps {
     account?: AccountInfo;
+    store?: unknown;
   }
 
   export default function RemoteApp(_props: IRemoteAppProps): JSX.Element;

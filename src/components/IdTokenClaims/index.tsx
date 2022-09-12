@@ -18,8 +18,10 @@ const IdTokenClaims = ({ idTokenClaims }: IIdTokenClaimsProps) => {
         <strong>Issuer: </strong> {idTokenClaims.iss}
       </Typography>
       <Typography display="flex">
-        {/** En algunos casos el claim es una clave compuesta, es decir, con caracteres especiales como '.' */}
-        <strong>Email</strong> {idTokenClaims?.["signInNames.emailAddress"]}
+        <>
+          {/** En algunos casos el claim es una clave compuesta, es decir, con caracteres especiales como '.' */}
+          <strong>Email</strong> {idTokenClaims?.["signInNames.emailAddress"]}
+        </>
       </Typography>
     </div>
   );
