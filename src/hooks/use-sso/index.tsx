@@ -1,6 +1,8 @@
 import React from "react";
 import { useMsal } from "@azure/msal-react";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
+import { useDispatch } from "react-redux";
+import { setIdToken } from "app/slices/auth";
 
 import { loginRequest } from "../../authConfig";
 
@@ -19,6 +21,8 @@ const useToken = (
   const { accounts, instance } = useMsal();
   const [isLoaded, setIsLoaded] = React.useState(() => Boolean(localStorage.getItem(key)));
   const [claims, setClaims] = React.useState<IClaimsAB2C | null>(null);
+  const [token, setToken] = React.useState<string>("");
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (instance) {
@@ -26,8 +30,9 @@ const useToken = (
         try {
           const { idToken, idTokenClaims } = await instance.ssoSilent({ account: accounts?.[0] });
 
-          localStorage.setItem(key, idToken);
+          dispatch(setIdToken(idToken));
           setIsLoaded(true);
+          setToken(idToken);
           setClaims(idTokenClaims as IClaimsAB2C);
         } catch (err) {
           if (err instanceof InteractionRequiredAuthError) {
@@ -36,11 +41,12 @@ const useToken = (
         }
       })();
     }
-  }, [instance, accounts, key, login]);
+  }, [instance, accounts, key, login, dispatch]);
 
   return {
     isLoaded,
     claims,
+    token,
   };
 };
 

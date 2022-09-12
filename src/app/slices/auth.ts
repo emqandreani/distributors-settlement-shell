@@ -2,10 +2,12 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 export interface authState {
   authenticated: boolean;
+  idToken: null | string;
 }
 
 const initialState: authState = {
   authenticated: false,
+  idToken: null,
 };
 
 export const authSlice = createSlice({
@@ -17,12 +19,16 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       state.authenticated = false;
+      state.idToken = null;
+    },
+    setIdToken: (state, action) => {
+      state.idToken = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setIdToken } = authSlice.actions;
 
 export default authSlice.reducer;
 

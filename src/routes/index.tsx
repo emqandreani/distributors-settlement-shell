@@ -1,9 +1,10 @@
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { Route, Routes } from "react-router";
 import type { IRemoteAppProps } from "remote/App";
 import dynamicImport from "lib/dynamicImport";
 import { store } from "app/store";
+import useToken from "hooks/use-sso";
 
 import PrincipalSkeleton from "../skeletons/Principal";
 
@@ -17,6 +18,12 @@ export default function AppRoutes() {
   const { accounts } = useMsal();
   const isAuth = useIsAuthenticated();
   const account = accounts?.[0];
+
+  const { token } = useToken();
+
+  useEffect(() => {
+    token.length && localStorage.setItem("token", token);
+  }, [token]);
 
   return (
     <React.Suspense fallback={<PrincipalSkeleton />}>

@@ -23,4 +23,5 @@ export interface IClaimsAB2C {
 export interface IUseTokenResult {
   isLoaded: boolean;
   claims: IClaimsAB2C | null;
+  token: string;
 }

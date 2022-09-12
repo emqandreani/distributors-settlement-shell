@@ -2,6 +2,8 @@ import React from "react";
 import { MsalProvider } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
 import PropTypes from "prop-types";
+import { Provider } from "react-redux";
+import { store } from "app/store";
 
 import Main from "./layout/Main";
 import AppRoutes from "./routes";
@@ -14,7 +16,9 @@ export default function App({ msalInstance }: IAppProps) {
   return (
     <MsalProvider instance={msalInstance}>
       <Main>
-        <AppRoutes />
+        <Provider store={store}>
+          <AppRoutes />
+        </Provider>
       </Main>
     </MsalProvider>
   );
