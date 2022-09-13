@@ -33,5 +33,17 @@ module.exports = {
       singleton: true,
       requiredVersion: dependencies["react-router-dom"],
     },
+    "@azure/msal": {
+      singleton: true,
+      requiredVersion: dependencies["@azure/msal"],
+    },
+    "@azure/msal-browser": {
+      singleton: true,
+      requiredVersion: dependencies["@azure/msal-browser"]
+    },
+    "@azure/msal-react": {
+      singleton: true,
+      requiredVersion: dependencies["@azure/msal-react"]
+    },
   },
 };
