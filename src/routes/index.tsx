@@ -2,9 +2,9 @@ import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import React, { useEffect, useMemo } from "react";
 import { Route, Routes } from "react-router";
 import type { IRemoteAppProps } from "remote/App";
-import dynamicImport from "lib/dynamicImport";
 import { store } from "app/store";
 import useToken from "hooks/use-sso";
+import {dynamicImport} from "@architecture-it/microfront-utils"
 
 import PrincipalSkeleton from "../skeletons/Principal";
 
