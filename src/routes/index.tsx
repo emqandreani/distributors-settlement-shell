@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router";
 import type { IRemoteAppProps } from "remote/App";
 import { store } from "app/store";
 import useToken from "hooks/use-sso";
-import {dynamicImport} from "@architecture-it/microfront-utils"
+import {dynamicImport, ErrorBoundary} from "@architecture-it/microfront-utils"
 
 import PrincipalSkeleton from "../skeletons/Principal";
 
@@ -26,7 +26,8 @@ export default function AppRoutes() {
   }, [token]);
 
   return (
-    <React.Suspense fallback={<PrincipalSkeleton />}>
+    <ErrorBoundary>
+      <React.Suspense fallback={<PrincipalSkeleton />}>
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route element={<User />} path="user" />
@@ -37,5 +38,6 @@ export default function AppRoutes() {
         <Route index element={isAuth ? <Home /> : <h1>Inicia sesión para continuar</h1>} />
       </Routes>
     </React.Suspense>
+    </ErrorBoundary>
   );
 }
