@@ -1,3 +1,3 @@
 export const MFRoutes = {
-    administracion: "/administracion"
-}
+  administracion: "/administracion",
+};

@@ -14,7 +14,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setAuthtenticated : (state: AuthInitialStateProps, action: PayloadAction<boolean> ) => {
+    setAuthtenticated: (state: AuthInitialStateProps, action: PayloadAction<boolean>) => {
       state.authenticated = action.payload;
     },
     setIdToken: (state, action) => {

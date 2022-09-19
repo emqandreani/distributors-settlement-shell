@@ -1,31 +1,26 @@
+import React from "react";
 import { useIsAuthenticated } from "@azure/msal-react";
-import { setAuthtenticated } from "app/slices/auth";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { MFRoutes } from "./routes";
+import { getLocalStorage } from "test-utils/localStorage";
 
 const ProtectedRoute = () => {
+  const [, setAuthMsg] = useState<string | null>(null);
   const isAuth = useIsAuthenticated();
-  const dispatch = useDispatch();
+
+  const handleUpdate = () => {
+    setAuthMsg(getLocalStorage("AUTH"));
+    console.log("FOUND:", getLocalStorage("AUTH"));
+  };
 
   useEffect(() => {
-    function checkApiAuth () {
-      const { pathname } = window.location;
-      const localAuth = localStorage.getItem("AUTH");
+    window.addEventListener("storage", handleUpdate, false);
 
-      if (Object.values(MFRoutes).some((el) => el === pathname)) {
-        dispatch(setAuthtenticated(localAuth === 'true'));
-      }
-    }
-
-    checkApiAuth();
-
+    return window.removeEventListener("storage", handleUpdate, false);
     // window.addEventListener('storage', checkApiAuth)
 
     // return window.removeEventListener('storage', checkApiAuth)
-
-  }, [dispatch])
+  }, []);
 
   if (!isAuth) {
     return <Navigate replace to={"/"} />;
