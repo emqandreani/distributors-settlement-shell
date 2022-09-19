@@ -1,5 +1,5 @@
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import type { IRemoteAppProps } from "remote/App";
 import { store } from "app/store";

@@ -3,24 +3,28 @@ import { setAuthtenticated } from "app/slices/auth";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import { MFRoutes } from "./MFRoutes";
+import { MFRoutes } from "./routes";
 
 const ProtectedRoute = () => {
   const isAuth = useIsAuthenticated();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const { pathname } = window.location;
+    function checkApiAuth () {
+      const { pathname } = window.location;
+      const localAuth = localStorage.getItem("AUTH");
 
-    function checkApiAuth (pathname: string) {
       if (Object.values(MFRoutes).some((el) => el === pathname)) {
-        const localAuth = (localStorage.getItem("AUTH") === 'true');
-        dispatch(setAuthtenticated(localAuth))
-        console.log(localAuth)
+        dispatch(setAuthtenticated(localAuth === 'true'));
       }
     }
 
-    checkApiAuth(pathname)
+    checkApiAuth();
+
+    // window.addEventListener('storage', checkApiAuth)
+
+    // return window.removeEventListener('storage', checkApiAuth)
+
   }, [dispatch])
 
   if (!isAuth) {
