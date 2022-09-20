@@ -41,16 +41,16 @@ const generateRoutesAuthenticated = ({
   pathname,
   handleClose,
 }: IGeneratorArguments): SidebarItemProps[] => [
-  {
-    item: "Ver usuario",
-    onClick: () => {
-      if (pathname !== "/user") {
-        navigate("user");
-      }
-      handleClose();
-    },
-    selected: pathname === "/user",
-  },
+  // {
+  //   item: "Ver usuario",
+  //   onClick: () => {
+  //     if (pathname !== "/user") {
+  //       navigate("user");
+  //     }
+  //     handleClose();
+  //   },
+  //   selected: pathname === "/user",
+  // },
   {
     item: "Logout",
     onClick: () => {

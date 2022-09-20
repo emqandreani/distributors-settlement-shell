@@ -2,7 +2,7 @@ import React from "react";
 import { useMsal } from "@azure/msal-react";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
 import { useDispatch } from "react-redux";
-import { setIdToken } from "app/slices/auth";
+import { setAuthtenticated, setIdToken } from "app/slices/auth";
 
 import { loginRequest } from "../../authConfig";
 
@@ -31,6 +31,7 @@ const useToken = (
           const { idToken, idTokenClaims } = await instance.ssoSilent({ account: accounts?.[0] });
 
           dispatch(setIdToken(idToken));
+          dispatch(setAuthtenticated(true));
           setIsLoaded(true);
           setToken(idToken);
           setClaims(idTokenClaims as IClaimsAB2C);
