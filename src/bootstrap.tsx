@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { msalConfig, silentRequest } from "./authConfig";
 import { subscribe } from "./events";
+import "./index.css";
 
 /**
  * Debe ser istanciado fuera del ciclo de vida de los componentes para evitar reisntanciar cuando rerenderice la app

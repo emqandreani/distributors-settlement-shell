@@ -2,10 +2,13 @@ import { Button, Footer, Header, Sidebar, useToggle } from "@architecture-it/sty
 import type { SidebarItemProps } from "@architecture-it/stylesystem";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import React from "react";
+import { faBell, faUser } from "@fortawesome/pro-solid-svg-icons";
 import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { NavigateFunction } from "react-router-dom";
 import type { IPublicClientApplication } from "@azure/msal-browser";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import { loginRequest } from "../authConfig";
 
@@ -106,12 +109,25 @@ export default function Main({ children }: IMainProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const { instance: instanceMsal } = useMsal();
+  const { instance: instanceMsal, accounts } = useMsal();
+  const account = accounts[0];
+
   const isAuth = useIsAuthenticated();
 
   return (
     <div className={styles.container}>
-      <Header onClickButton={handleOpen} />
+      <Header onClickButton={handleOpen}>
+        <div className={styles["header-content"]}>
+          <h3 className={styles["header-title"]}>Sistema de liquidación</h3>
+          {account && (
+            <div className={styles["header-user-wrapper"]}>
+              <FontAwesomeIcon icon={faBell as IconProp} />
+              <p>{account.name}</p>
+              <FontAwesomeIcon icon={faUser as IconProp} />
+            </div>
+          )}
+        </div>
+      </Header>
       <Sidebar
         open={open}
         routes={[
