@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@architecture-it/microfront-utils": "^1.0.0",
+    "@architecture-it/microfront-utils": "^1.2.0",
     "@architecture-it/stylesystem": "^2.3.0",
     "@azure/msal-browser": "^2.26.0",
     "@azure/msal-react": "^1.4.2",

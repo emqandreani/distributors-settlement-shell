@@ -6,10 +6,10 @@ import { AuthenticationResult, EventType, PublicClientApplication } from "@azure
 import { StyleSystemProvider } from "@architecture-it/stylesystem";
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
+import { subscribe } from "@architecture-it/microfront-utils";
 
 import App from "./App";
 import { msalConfig, silentRequest } from "./authConfig";
-import { subscribe } from "./events";
 import "./index.css";
 
 /**
