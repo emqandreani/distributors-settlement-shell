@@ -1,3 +1,5 @@
+import { TOKEN_KEY } from "constants/AUTH";
+
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router";
@@ -22,7 +24,7 @@ export default function AppRoutes() {
   const { token } = useToken();
 
   useEffect(() => {
-    token.length && setLocalStorage("token", token);
+    token.length && setLocalStorage(TOKEN_KEY, token);
   }, [token]);
 
   return (
