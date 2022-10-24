@@ -29,6 +29,10 @@ module.exports = {
       singleton: true,
       requiredVersion: dependencies["react-redux"],
     },
+    "react-router": {
+      singleton: true,
+      requiredVersion: dependencies["react-router"],
+    },
     "react-router-dom": {
       singleton: true,
       requiredVersion: dependencies["react-router-dom"],
