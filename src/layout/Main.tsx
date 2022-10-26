@@ -36,6 +36,30 @@ const defaultRoutes = ({
     },
     selected: pathname === "/",
   },
+  {
+    item: "Administración",
+    onClick: () => {
+      navigate("/administracion");
+      handleClose();
+    },
+    selected: pathname === "/administracion",
+  },
+  {
+    item: "Liquidación",
+    onClick: () => {
+      navigate("/liquidacion");
+      handleClose();
+    },
+    selected: pathname === "/liquidacion",
+  },
+  {
+    item: "Catálogo",
+    onClick: () => {
+      navigate("/catalogo");
+      handleClose();
+    },
+    selected: pathname === "/catalogo",
+  },
 ];
 
 const generateRoutesAuthenticated = ({
